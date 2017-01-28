@@ -37,9 +37,6 @@ import java.util.List;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
-/**
- * Created by Mako on 1/23/2017.
- */
 public class ContactOverview extends Fragment {
     private String key;
     private String category;
@@ -52,8 +49,8 @@ public class ContactOverview extends Fragment {
     private RecyclerView address_Card, bank_card;
     private CustomAdapter AddressAdapter,BankAdapter;
     private RecyclerView.LayoutManager mLayoutManager, layoutManager;
-    List<String> fullAddress = new ArrayList<String>();
-    List<String> fullBank = new ArrayList<String>();
+    List<String> fullAddress = new ArrayList<>();
+    List<String> fullBank = new ArrayList<>();
     public static boolean firsetload=true;
 
 
@@ -99,7 +96,7 @@ public class ContactOverview extends Fragment {
     }
 
     private void initUI() {
-        String str=new String();
+
         firsetload=true;
         name_tv = (TextView) v.findViewById(R.id.contact_name_tx);
         company_tv = (TextView) v.findViewById(R.id.company_name_tx);
@@ -151,7 +148,7 @@ public class ContactOverview extends Fragment {
             }
 
             if(person.getCompany()!=null)
-                company_tv.setText(person.getCompany().toString());
+                company_tv.setText(person.getCompany());
 
             mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
             layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -172,16 +169,16 @@ public class ContactOverview extends Fragment {
              buyer_type_tv.setText(person.getBuyertype());
            }
             if (person.isPercentage())
-                charge_value_tv.setText(person.getChargeValue().toString()+"%");
+                charge_value_tv.setText(person.getChargeValue()+"%");
             else
-                charge_value_tv.setText(person.getChargeValue().toString());
+                charge_value_tv.setText(person.getChargeValue());
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.contact_overview, null);
+        View view = inflater.inflate(R.layout.contact_overview,container,false);
         progress = new ProgressDialog(getActivity());
         progress.setTitle("Loading");
         progress.setMessage("Syncing ");
@@ -204,9 +201,16 @@ public class ContactOverview extends Fragment {
 
             }
         });
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStackImmediate();
+        String ContactType[] = { "Sellers","Buyer","Transport" };
+        FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
+        int e =0;
+        for (int i = 0; i < ContactType.length; i++) {
+            if(ContactType[i].equals(category))
+              e=i;
         }
+        ft.replace(R.id.content_frame, new Contact_List(e));
+        ft.commit();
     }
     private void loadData() {
         mDatabase = FirebaseDatabase.getInstance().getReference().child(category).child(key);
@@ -217,7 +221,7 @@ public class ContactOverview extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if(firsetload) {
-                        person = (Person) dataSnapshot.getValue(Person.class);
+                        person = dataSnapshot.getValue(Person.class);
                         //Log.d(category, key + " " + person.getName());
                         initUI();
                         firsetload=false;
@@ -238,9 +242,6 @@ public class ContactOverview extends Fragment {
     private class phoneAdapter extends RecyclerView.Adapter<phoneAdapter.ViewHolder> {
         List<String> phoneNumber = person.getPhone();
 
-        public phoneAdapter() {
-
-        }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -338,7 +339,7 @@ public class ContactOverview extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ClipboardManager  myClipboard = (ClipboardManager)getActivity().getSystemService(CLIPBOARD_SERVICE);
-                                ClipData myClip=ClipData.newPlainText("text", text.get(getLayoutPosition()).toString());
+                                ClipData myClip=ClipData.newPlainText("text", text.get(getLayoutPosition()));
                                 myClipboard.setPrimaryClip(myClip);
                                 Toast.makeText(getActivity(),"copied to clipboard",Toast.LENGTH_SHORT).show();
                             }

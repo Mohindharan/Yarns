@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,16 +21,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * Created by Mako on 1/28/2017.
- */
+
 public class Displayproduct extends Fragment {
     product p;
     private DatabaseReference mDatabase;
     TextView name,description,rate;
     String key;
     View v;
-    public  boolean firsetload=true;
+    public  boolean firsetload;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,10 +46,12 @@ public class Displayproduct extends Fragment {
         setHasOptionsMenu(true);
     }
     public void setdata()
-    {
-        getActivity().setTitle(p.getName().toString());
-        name.setText(p.getName().toString());
-        description.setText(p.getDescription().toString());
+    {   if (p.name!=null) {
+        getActivity().setTitle(p.getName());
+        name.setText(p.getName());
+    }
+     if (p.description!=null)
+        description.setText(p.getDescription());
         rate.setText(String.valueOf(p.getRate()));
 
 
@@ -60,7 +61,7 @@ public class Displayproduct extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initUI();
         loadData();
-
+        firsetload=true;
     }
 
 
@@ -73,10 +74,11 @@ public class Displayproduct extends Fragment {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    p = (product) dataSnapshot.getValue(product.class);
-
-                    setdata();
+                     if (firsetload) {
+                         p = dataSnapshot.getValue(product.class);
+                         setdata();
+                         firsetload=false;
+                     }
 
             }
             @Override
@@ -122,9 +124,10 @@ public class Displayproduct extends Fragment {
 
             }
         });
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStackImmediate();
-        }
+        FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
+        ft.replace(R.id.content_frame, new Product_list());
+        ft.commit();
     }
 
 }
