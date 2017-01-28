@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:background="?attr/selectableItemBackground"
+            android:id="@+id/text_name"
+            android:layout_weight="1"
+            android:text="aaaaa"
+            android:clickable="true"
+            android:paddingLeft="25dp"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:gravity="center_vertical"
+            />
+
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:id="@+id/message_btn"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_message"/>
+</LinearLayout>

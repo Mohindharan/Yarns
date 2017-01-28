@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "331301278282",
+    "firebase_url": "https://krishnayarns-92bb1.firebaseio.com",
+    "project_id": "krishnayarns-92bb1",
+    "storage_bucket": "krishnayarns-92bb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331301278282:android:c1d3123ff859abce",
+        "android_client_info": {
+          "package_name": "com.mako.srikrishnayarns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331301278282-96mc6r46o2qo46daumq46a09scgp0qf6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mako.srikrishnayarns",
+            "certificate_hash": "CBC144F17FF0656F463BDA69D4C9B671CEF899EB"
+          }
+        },
+        {
+          "client_id": "331301278282-smgvpln4fk4ta4tr9utjggqigj21flf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG0nuEhv8xeSR_G1UlPSTuF4RqhGDRJm8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331301278282-smgvpln4fk4ta4tr9utjggqigj21flf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

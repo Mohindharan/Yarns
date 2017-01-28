@@ -1,0 +1,32 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+
+    <include
+        layout="@layout/contact_recycler_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:id="@+id/useradd"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:foregroundGravity="bottom|right"
+        app:rippleColor="@color/blue_dark_grey"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_gravity="bottom|right"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_add_user"
+        app:fabSize="normal"
+        app:layout_anchorGravity="bottom|center_horizontal" />
+</android.support.design.widget.CoordinatorLayout>

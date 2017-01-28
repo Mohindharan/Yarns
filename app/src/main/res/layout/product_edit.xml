@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:focusableInTouchMode="true"></LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:textColor="@color/primary_color"
+        android:background="?attr/selectableItemBackground"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Product Name"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:id="@+id/product_name"
+        android:layout_marginLeft="5dp"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary_color"
+        android:text="Description"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Description"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:id="@+id/description"
+        android:layout_marginLeft="5dp"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/primary_color"
+        android:text="Rate"
+        android:textSize="20sp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Rate"
+        android:inputType="number"
+        android:id="@+id/rate"
+        android:layout_marginLeft="5dp"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        />
+</LinearLayout>

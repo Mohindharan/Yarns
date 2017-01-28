@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rd">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/Light_Blue"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/Blue_Grey"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:background="@color/colorWhite"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addbook"
+                android:layout_margin="5dp"
+                android:textColor="#fefffe"
+                android:background="@color/Light_Blue"
+                android:text="import contact "/>
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/name_ev"
+                android:hint="Name"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_people"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Primary Number"
+                android:id="@+id/phone_1"
+                android:inputType="phone"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_cell_phone"/>
+            <Button
+                android:background="@color/colorWhite"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/more"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textColor="@color/accent_color"
+                android:padding="10dp"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"
+                android:shadowColor="@android:color/transparent"
+                android:layout_height="wrap_content"
+                android:text="more Fields"/>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:id="@+id/more_layout">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="phone"
+                android:hint="Secondary Number"
+                android:id="@+id/phone_2"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+
+                android:drawableLeft="@drawable/ic_cell_phone"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Tertiary Number"
+                android:id="@+id/phone_3"
+                android:inputType="phone"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+
+                android:drawableLeft="@drawable/ic_cell_phone"/>
+          </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Company name"
+                android:inputType="text"
+                android:id="@+id/company_name"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_multiple_users"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:id="@+id/email"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_close_envelope"/>
+
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/contatType"
+                android:layout_margin="15dp"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined">
+            </Spinner>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Enter the Buyer Type"
+                android:inputType="textEmailAddress"
+                android:id="@+id/buyer_type"
+                android:visibility="gone"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_multiple_users"/>
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/not_for_tras"
+        android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/bank_list"
+                    android:background="#f3f3f3"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    android:layout_width="match_parent" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Bank Details"
+                android:inputType="textMultiLine"
+                android:id="@+id/bank_ev"
+                android:layout_marginLeft="5dp"
+                            android:drawablePadding="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_credit_card"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/set_bank"
+                android:layout_margin="5dp"
+                android:textColor="#fefffe"
+                android:background="@color/Light_Blue"
+                android:text="Add A bank Details "/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/Blue_Grey"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/switch_charge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:paddingTop="10dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="10dp"
+
+                android:id="@+id/chargetype"
+                android:textSize="18sp"
+                android:layout_toRightOf="@+id/switch_charge"
+                android:text="Service Percentage"/>
+        </RelativeLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Value"
+            android:id="@+id/charge_value"
+            android:background="@color/colorWhite"
+            style="@style/Base.V7.Widget.AppCompat.EditText"
+            android:gravity="center"
+            android:inputType="number"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/address_list"
+                    android:background="#f3f3f3"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    android:layout_width="match_parent" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_address"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#fefffe"
+            android:background="@color/Light_Blue"
+            android:text="Set Address "/>
+    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

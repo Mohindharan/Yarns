@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:clickable="true"
+        android:background="@color/colorPrimary"
+        android:id="@+id/create_order_btn"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+
+            android:text="Create Confirmation"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center_vertical|right"
+            android:id="@+id/imageView2" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_border"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:id="@+id/manage_product">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="Manage products"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center_vertical|right"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_border"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="Review Forms"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center_vertical|right"
+            android:id="@+id/imageView4" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_border"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:text="Manage All Confirmation"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_right_arrow"
+            android:layout_gravity="center_vertical|right"
+            android:id="@+id/imageView3" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/blue_gradiant"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Contacts"
+                android:paddingBottom="5dp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center_horizontal"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                    android:layout_weight="1"
+                    android:weightSum="1">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="@dimen/fabbtn_size"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="10dp"
+                        android:layout_gravity="center_horizontal"
+                        app:backgroundTint="#006064"
+                        app:rippleColor="@color/colorWhite"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        app:srcCompat="@drawable/ic_factory"
+                        app:fabSize="normal"
+                        android:id="@+id/sellerbtn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:textSize="@dimen/fab_text_size"
+                        android:textColor="@color/colorWhite"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Sellers"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+
+                    android:weightSum="1">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="@dimen/fabbtn_size"
+                        android:elevation="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        app:backgroundTint="#006064"
+                        app:rippleColor="@color/colorWhite"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        app:srcCompat="@drawable/ic_users"
+                        app:fabSize="normal"
+                        android:id="@+id/buyerbtn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:textSize="@dimen/fab_text_size"
+                        android:textColor="@color/colorWhite"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Buyers"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:weightSum="1">
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="@dimen/fabbtn_size"
+                        android:elevation="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:rippleColor="@color/colorWhite"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_gravity="center_horizontal"
+                        app:backgroundTint="#006064"
+                        app:srcCompat="@drawable/ic_delivery_truck"
+                        app:fabSize="normal"
+                        android:id="@+id/transportbtn" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:textSize="@dimen/fab_text_size"
+                        android:textColor="@color/colorWhite"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Transport"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        //pay
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:background="@color/Blue_Grey">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Payments"
+            android:textColor="@color/blue_dark_grey"
+            android:paddingTop="10dp"
+            android:gravity="center_horizontal"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:paddingTop="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:weightSum="1">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="@dimen/fabbtn_size"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:elevation="10dp"
+                    app:rippleColor="@color/blue_dark_grey"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_gravity="center_horizontal"
+                    app:backgroundTint="@color/colorWhite"
+                    app:srcCompat="@drawable/ic_invoice"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:textSize="@dimen/fab_text_size"
+                    android:textColor="#0c0c0f"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Service"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:weightSum="1">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="@dimen/fabbtn_size"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:elevation="10dp"
+                    app:rippleColor="@color/blue_dark_grey"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_gravity="center_horizontal"
+                    app:backgroundTint="@color/colorWhite"
+                    app:srcCompat="@drawable/ic_change"
+                    app:fabSize="normal" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:textColor="#0c0c0f"
+                    android:textSize="@dimen/fab_text_size"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Payment"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+</LinearLayout>

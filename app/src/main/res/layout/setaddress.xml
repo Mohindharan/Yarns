@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:text="Set Address"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Area "
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:id="@+id/edit1"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Street"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:id="@+id/edit2"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="City"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:id="@+id/edit3"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="State"
+        android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:id="@+id/edit4"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Postal Code"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:id="@+id/edit5"
+        />
+
+
+</LinearLayout>
