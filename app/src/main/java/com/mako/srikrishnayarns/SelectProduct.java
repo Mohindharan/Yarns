@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,15 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mako on 1/28/2017.
+ * Created by Mako on 1/29/2017.
  */
-
-public class Product_list extends Fragment {
-    View view;
+public class SelectProduct extends AppCompatActivity {    private static final int PERMISSION_REQUEST_CONTACT = 1;
+    String Category;
     FloatingActionButton fabadd;
     RecyclerView mRecyclerView;
     RecyclerViewFastScroller fastScroller;
     private LinearLayoutManager linearLayoutManager;
+    String category;
     ProgressDialog progress;
     private DatabaseReference mDatabase;
     int pos;
@@ -41,55 +39,21 @@ public class Product_list extends Fragment {
     private List<String> mDatakey;
     private List<AlphabetItem> mAlphabetItems;
     private ProgressBar spinner;
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       return inflater.inflate(R.layout.product_list,container,false);
 
-    }
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.view=view;
-        mDataArray=new ArrayList<String>();
-        mDatakey=new ArrayList<String>();
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.select_contact);
+        this.setTitle("Select Item");
         loadData();
-        progress = new ProgressDialog(getActivity());
+        progress = new ProgressDialog(this);
         progress.setTitle("Loading");
         progress.setMessage("Syncing ");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
         progress.show();
-        getActivity().setTitle("Product List");
-        mRecyclerView =(RecyclerView)view.findViewById(R.id.my_recycler_view);
-        fastScroller=(RecyclerViewFastScroller)view.findViewById(R.id.fast_scroller);
+        mRecyclerView =(RecyclerView)findViewById(R.id.my_recycler_view);
+        fastScroller=(RecyclerViewFastScroller)findViewById(R.id.fast_scroller);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-    }
-    private void loadData() {
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("product");
-        mDatabase.keepSynced(true);
-        mDatabase.orderByChild("name").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mDataArray.clear();
-                mDatakey.clear();
-
-                for(DataSnapshot single:dataSnapshot.getChildren()){
-                    mDataArray.add(single.child("name").getValue().toString());
-                    mDatakey.add(single.getKey().toString());
-                }
-                initialiseData();
-                initialiseUI();
-                progress.dismiss();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
     }
     protected void initialiseData() {
         //Recycler view 0
@@ -109,16 +73,48 @@ public class Product_list extends Fragment {
             }
         }
     }
+    private void loadData() {
+
+        mDataArray=new ArrayList<String>();
+        mDatakey=new ArrayList<String>();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("product");
+        mDatabase.keepSynced(true);
+        mDatabase.orderByChild("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                for(DataSnapshot single:dataSnapshot.getChildren()){
+                    mDataArray.add(single.child("name").getValue().toString());
+                    mDatakey.add(single.getKey().toString());
+                }
+                initialiseData();
+                initialiseUI();
+                progress.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getnewItem() {
+    }
     protected void initialiseUI(){
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.setAdapter(new ProductAdapter(mDataArray,mDatakey,getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        contactSelectAdapter contactAda= new contactSelectAdapter(mDataArray,mDatakey,category,this);
+        mRecyclerView.setAdapter(contactAda);
         fastScroller.setRecyclerView(mRecyclerView);
         fastScroller.setUpAlphabet(mAlphabetItems);
-        fabadd=(FloatingActionButton)view.findViewById(R.id.productadd);
+        fabadd=(FloatingActionButton)findViewById(R.id.useradd);
         fabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Create_product.class);
+                Intent intent = new Intent(SelectProduct.this,Create_product.class);
                 startActivity(intent);
             }
         });

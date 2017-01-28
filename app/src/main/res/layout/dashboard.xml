@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/top_border"
         android:padding="@dimen/activity_horizontal_margin"
+        android:clickable="true"
         android:orientation="horizontal"
         android:weightSum="1"
         android:id="@+id/manage_product">
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/top_border"
         android:padding="@dimen/activity_horizontal_margin"
+        android:clickable="true"
         android:orientation="horizontal"
         android:weightSum="1">
         <TextView
@@ -102,6 +104,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/top_border"
         android:padding="@dimen/activity_horizontal_margin"
+        android:clickable="true"
         android:orientation="horizontal"
         android:weightSum="1">
         <TextView

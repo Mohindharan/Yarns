@@ -7,6 +7,25 @@ package com.mako.srikrishnayarns;
 public class product {
     String name,description;
     int rate;
+    int quantity;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    int count;
 
     public String getName() {
         return name;

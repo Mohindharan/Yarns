@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:layout_height="match_parent">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,92 +11,79 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="25dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="15dp"
             android:paddingRight="5dp"
             android:paddingTop="15dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buyer"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:textSize="17sp"
-                android:textColor="@color/blue_dark_grey"
-                android:background="?attr/editTextBackground"
-                android:layout_height="wrap_content"
-                android:id="@+id/select_buyer"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seller"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textSize="17sp"
-                android:textColor="@color/blue_dark_grey"
-                android:background="?attr/editTextBackground"
-                android:layout_height="wrap_content"
-                android:id="@+id/select_seller"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Transport"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:textSize="17sp"
-                android:textColor="@color/blue_dark_grey"
-                android:background="?attr/editTextBackground"
-                android:layout_height="wrap_content"
-                android:id="@+id/select_trasport"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Items"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                />
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_margin="15dp"
-                android:background="@color/Blue_Grey"
-                android:id="@+id/item_list"
-                android:layout_height="100dp">
-
-            </android.support.v7.widget.RecyclerView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="+ Add item"
-                android:padding="5dp"
-                android:background="?attr/selectableItemBackground"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:clickable="true"
-                android:id="@+id/addItem"
-                android:gravity="center_horizontal"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                />
             <LinearLayout
+                android:layout_width="0dp"
+                android:focusableInTouchMode="true"
+                android:layout_height="0dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="17sp"
+                android:textColor="@color/blue_dark_grey"
+                android:hint="Select a item"
+                android:background="?attr/editTextBackground"
+                android:layout_height="wrap_content"
+                android:id="@+id/select_Product"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rate"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="17sp"
+                android:textColor="@color/blue_dark_grey"
+                android:background="?attr/editTextBackground"
+                android:layout_height="wrap_content"
+                android:id="@+id/selected_rate"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Count"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                />
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                ></LinearLayout>
+                android:textSize="17sp"
+                android:id="@+id/count"
+                android:clickable="true"
+                android:inputType="number"
+                android:hint="Quality Count"
+                android:textColor="@color/blue_dark_grey"
+                android:background="?attr/editTextBackground"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:id="@+id/quantity"
+                android:clickable="true"
+                android:inputType="number"
+                android:hint="Number of bags"
+                android:textColor="@color/blue_dark_grey"
+                android:background="?attr/editTextBackground"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    </ScrollView>
-
-
-
 </LinearLayout>

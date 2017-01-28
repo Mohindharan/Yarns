@@ -13,10 +13,6 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Created by Mako on 1/28/2017.
- */
-
 public class Create_product extends AppCompatActivity implements View.OnClickListener {
     Toolbar toolbar;
     EditText name_ev,description_ev,rate_ev;
@@ -89,8 +85,7 @@ public class Create_product extends AppCompatActivity implements View.OnClickLis
         moveup();
     }
     public void moveup(){
-        onBackPressed();
-
+        finish();
     }
 
 }
