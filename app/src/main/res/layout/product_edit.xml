@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="1dp"
         android:layout_height="1dp"
-        android:focusableInTouchMode="true"></LinearLayout>
+        android:focusableInTouchMode="true"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Rate"
+        android:hint="Rate "
         android:inputType="number"
         android:id="@+id/rate"
         android:layout_marginLeft="5dp"
