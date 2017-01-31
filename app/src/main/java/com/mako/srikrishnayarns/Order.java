@@ -1,17 +1,72 @@
 package com.mako.srikrishnayarns;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Mako on 1/27/2017.
  */
 
 public class Order {
-    String buyer,buyerKey,seller,sellerKey,transport,transportKey,OrderNo,typeOfSale,category,estimateDelivery,billDate;
-    int NoOfbags,count,total,advance,quantity;
+    String buyer,buyerKey,seller,sellerKey,transport,transportKey,typeOfSale,typeofpayment;
+    int noOfbags;
+    int count;
+    int total;
+    int advanceamt;
+    int quantity;
+    int billdate;
+    int deliveydate;
+    int discount;
+    int adjustments;
+    int shippping;
+
+    public int getGrand_total() {
+        return grand_total;
+    }
+
+    public void setGrand_total(int grand_total) {
+        this.grand_total = grand_total;
+    }
+
+    int grand_total;
+    List<product> productList=new ArrayList<>();
     boolean isAdvance;
     boolean paid;
     boolean e1Form;
     boolean cform;
     boolean dispatched;
+
+    public String getTypeofpayment() {
+        return typeofpayment;
+    }
+
+    public void setTypeofpayment(String typeofpayment) {
+        this.typeofpayment = typeofpayment;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    public int getAdjustments() {
+        return adjustments;
+    }
+
+    public void setAdjustments(int adjustments) {
+        this.adjustments = adjustments;
+    }
+
+    public int getShippping() {
+        return shippping;
+    }
+
+    public void setShippping(int shippping) {
+        this.shippping = shippping;
+    }
 
     public boolean isServicePaid() {
         return servicePaid;
@@ -55,21 +110,6 @@ public class Order {
 
     boolean servicePaid;
 
-    public String getEstimateDelivery() {
-        return estimateDelivery;
-    }
-
-    public void setEstimateDelivery(String estimateDelivery) {
-        this.estimateDelivery = estimateDelivery;
-    }
-
-    public String getBillDate() {
-        return billDate;
-    }
-
-    public void setBillDate(String billDate) {
-        this.billDate = billDate;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -128,13 +168,6 @@ public class Order {
         this.sellerKey = sellerKey;
     }
 
-    public String getOrderNo() {
-        return OrderNo;
-    }
-
-    public void setOrderNo(String orderNo) {
-        OrderNo = orderNo;
-    }
 
     public String getTypeOfSale() {
         return typeOfSale;
@@ -144,20 +177,36 @@ public class Order {
         this.typeOfSale = typeOfSale;
     }
 
-    public String getCategory() {
-        return category;
+    public int getBilldate() {
+        return billdate;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setBilldate(int billdate) {
+        this.billdate = billdate;
+    }
+
+    public int getDeliveydate() {
+        return deliveydate;
+    }
+
+    public void setDeliveydate(int deliveydate) {
+        this.deliveydate = deliveydate;
+    }
+
+    public List<product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<product> productList) {
+        this.productList = productList;
     }
 
     public int getNoOfbags() {
-        return NoOfbags;
+        return noOfbags;
     }
 
     public void setNoOfbags(int noOfbags) {
-        NoOfbags = noOfbags;
+        this.noOfbags = noOfbags;
     }
 
     public int getCount() {
@@ -176,12 +225,12 @@ public class Order {
         this.total = total;
     }
 
-    public int getAdvance() {
-        return advance;
+    public int getAdvanceamt() {
+        return advanceamt;
     }
 
-    public void setAdvance(int advance) {
-        this.advance = advance;
+    public void setAdvanceamt(int advanceamt) {
+        this.advanceamt = advanceamt;
     }
 
     public boolean isAdvance() {

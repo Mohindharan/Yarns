@@ -82,8 +82,8 @@ public class SelectProduct extends AppCompatActivity {    private static final i
         mDatabase.orderByChild("name").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
+                mDataArray.clear();
+                mDatakey.clear();
                 for(DataSnapshot single:dataSnapshot.getChildren()){
                     mDataArray.add(single.child("name").getValue().toString());
                     mDatakey.add(single.getKey().toString());

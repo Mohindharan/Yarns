@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -90,9 +91,10 @@ public class SelectCurrentProduct extends AppCompatActivity {
         Toast.makeText(this,"saved ",Toast.LENGTH_SHORT).show();
         Intent intent= new Intent();
         intent.putExtra("name",select_tv.getText());
-        intent.putExtra("rate",rate.getText());
-        intent.putExtra("count",count.getText());
-        intent.putExtra("quantity,",quantity.getText());
+        intent.putExtra("rate",rate.getText().toString());
+        intent.putExtra("count",count.getText().toString());
+        intent.putExtra("qua",quantity.getText().toString());
+//        Log.d("rate",String.valueOf(quantity.getText().toString()));
         setResult(Activity.RESULT_OK,intent);
         finish();
     }
