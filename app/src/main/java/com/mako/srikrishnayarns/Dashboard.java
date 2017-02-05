@@ -1,5 +1,8 @@
 package com.mako.srikrishnayarns;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,28 +21,32 @@ import android.widget.LinearLayout;
 public class Dashboard extends Fragment implements View.OnClickListener {
     View view;
     FloatingActionButton BuyerBtn,SellerBtn,Transportbtn;
-    LinearLayout createOrderBtn,manage_product;
+    LinearLayout createOrderBtn,manage_product,allconformation;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dashboard, container, false);
         setHasOptionsMenu(true);
+
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Dashboard");
+//        getActivity().setTitle("Dashboard");
         SellerBtn= (FloatingActionButton)view.findViewById(R.id.sellerbtn);
         Transportbtn= (FloatingActionButton)view.findViewById(R.id.transportbtn);
         BuyerBtn= (FloatingActionButton)view.findViewById(R.id.buyerbtn);
         createOrderBtn= (LinearLayout) view.findViewById(R.id.create_order_btn);
         manage_product= (LinearLayout) view.findViewById(R.id.manage_product);
+        allconformation= (LinearLayout) view.findViewById(R.id.all_conformation);
         BuyerBtn.setOnClickListener(this);
         manage_product.setOnClickListener(this);
         SellerBtn.setOnClickListener(this);
         Transportbtn.setOnClickListener(this);
+        allconformation.setOnClickListener(this);
         createOrderBtn.setOnClickListener(this);
+        ((MainActivity)getActivity()).setdarktoolbarcolor();
     }
     public void setFragment(Fragment fragment){
 
@@ -72,6 +79,9 @@ public class Dashboard extends Fragment implements View.OnClickListener {
                 break;
             case R.id.manage_product:
                 setFragment(new Product_list());
+                break;
+            case R.id.all_conformation:
+                setFragment(new confirmation_list());
                 break;
         }
     }

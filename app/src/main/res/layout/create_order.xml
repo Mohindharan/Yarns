@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    >
-
+    android:padding="10dp">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -393,6 +393,17 @@
         </LinearLayout>
 
     </ScrollView>
-
-
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:elevation="10dp"
+        android:id="@+id/saveadd"
+        android:foregroundGravity="bottom|right"
+        app:rippleColor="@color/blue_dark_grey"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_gravity="bottom|right"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_checked"
+        app:fabSize="normal"
+        />
+</FrameLayout>

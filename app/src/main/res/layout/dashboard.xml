@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/activity_horizontal_margin"
         android:clickable="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/create_order_btn"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -105,6 +105,7 @@
         android:background="@drawable/top_border"
         android:padding="@dimen/activity_horizontal_margin"
         android:clickable="true"
+        android:id="@+id/all_conformation"
         android:orientation="horizontal"
         android:weightSum="1">
         <TextView
@@ -128,41 +129,43 @@
             android:layout_gravity="center_vertical|right"
             android:id="@+id/imageView3" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+
             android:background="@drawable/blue_gradiant"
             android:layout_weight="1">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+
                 android:text="Contacts"
-                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:textColor="@color/colorWhite"
+                android:paddingBottom="5dp"
+
                 android:gravity="center_horizontal"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="10dp"
+                android:paddingTop="15dp"
                 android:weightSum="3"
                 android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-
                     android:layout_weight="1"
                     android:weightSum="1">
 
@@ -172,8 +175,8 @@
                         android:layout_weight="1"
                         android:elevation="10dp"
                         android:layout_gravity="center_horizontal"
-                        app:backgroundTint="#006064"
-                        app:rippleColor="@color/colorWhite"
+                        app:backgroundTint="@color/colorWhite"
+                        app:rippleColor="#4999d3"
                         style="@style/Widget.AppCompat.Button.Colored"
                         app:srcCompat="@drawable/ic_factory"
                         app:fabSize="normal"
@@ -202,10 +205,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
-                        app:backgroundTint="#006064"
-                        app:rippleColor="@color/colorWhite"
+                        app:backgroundTint="@color/colorWhite"
+                        app:rippleColor="#4999d3"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        app:srcCompat="@drawable/ic_users"
+                        app:srcCompat="@drawable/ic_users_buyer"
                         app:fabSize="normal"
                         android:id="@+id/buyerbtn" />
 
@@ -230,11 +233,12 @@
                         android:elevation="10dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:rippleColor="@color/colorWhite"
+                        app:backgroundTint="@color/colorWhite"
+                        app:rippleColor="#4999d3"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_gravity="center_horizontal"
-                        app:backgroundTint="#006064"
-                        app:srcCompat="@drawable/ic_delivery_truck"
+
+                        app:srcCompat="@drawable/ic_truck"
                         app:fabSize="normal"
                         android:id="@+id/transportbtn" />
 
@@ -251,34 +255,43 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorWhite"/>
         //pay
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingBottom="10dp"
-        android:background="@color/Blue_Grey">
+        android:paddingBottom="5dp"
+        android:background="@color/colorLightWhite">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="Payments"
+
             android:textColor="@color/blue_dark_grey"
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+
             android:gravity="center_horizontal"
             />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="2"
-            android:paddingTop="10dp"
+            android:paddingTop="15dp"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
+
                 android:weightSum="1">
 
                 <android.support.design.widget.FloatingActionButton
@@ -286,10 +299,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:elevation="10dp"
-                    app:rippleColor="@color/blue_dark_grey"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    app:rippleColor="@color/colorPrimary"
                     android:layout_gravity="center_horizontal"
                     app:backgroundTint="@color/colorWhite"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     app:srcCompat="@drawable/ic_invoice"
                     app:fabSize="normal" />
 
@@ -298,10 +311,11 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:textSize="@dimen/fab_text_size"
-                    android:textColor="#0c0c0f"
+                    android:textColor="@color/blue_dark_grey"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="Service"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -314,7 +328,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:elevation="10dp"
-                    app:rippleColor="@color/blue_dark_grey"
+                    app:rippleColor="@color/colorPrimary"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_gravity="center_horizontal"
                     app:backgroundTint="@color/colorWhite"
@@ -325,10 +339,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
-                    android:textColor="#0c0c0f"
+                    android:textColor="@color/blue_dark_grey"
                     android:textSize="@dimen/fab_text_size"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="Payment"/>
+                    android:text="Payment"
+                    android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>

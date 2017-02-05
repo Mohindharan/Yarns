@@ -65,7 +65,7 @@ public class Product_list extends Fragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
     }
     private void loadData() {
-
+        ((MainActivity)getActivity()).setlighttoolbarcolor();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("product");
         mDatabase.keepSynced(true);
         mDatabase.orderByChild("name").addValueEventListener(new ValueEventListener() {

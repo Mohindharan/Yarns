@@ -2,6 +2,8 @@ package com.mako.srikrishnayarns;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +29,8 @@ import java.util.List;
 /**
  * Created by Mako on 1/29/2017.
  */
-public class SelectProduct extends AppCompatActivity {    private static final int PERMISSION_REQUEST_CONTACT = 1;
+public class SelectProduct extends AppCompatActivity {
+    private static final int PERMISSION_REQUEST_CONTACT = 1;
     String Category;
     FloatingActionButton fabadd;
     RecyclerView mRecyclerView;
@@ -46,6 +51,7 @@ public class SelectProduct extends AppCompatActivity {    private static final i
         setContentView(R.layout.select_contact);
         this.setTitle("Select Item");
         loadData();
+        setlighttoolbarcolor();
         progress = new ProgressDialog(this);
         progress.setTitle("Loading");
         progress.setMessage("Syncing ");
@@ -54,6 +60,16 @@ public class SelectProduct extends AppCompatActivity {    private static final i
         mRecyclerView =(RecyclerView)findViewById(R.id.my_recycler_view);
         fastScroller=(RecyclerViewFastScroller)findViewById(R.id.fast_scroller);
         mRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+    public  void setlighttoolbarcolor(){
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        }
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources()
+                .getColor(R.color.colorPrimary)));
     }
     protected void initialiseData() {
         //Recycler view 0

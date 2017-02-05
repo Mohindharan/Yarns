@@ -9,11 +9,8 @@ import java.util.List;
 
 public class Order {
     String buyer,buyerKey,seller,sellerKey,transport,transportKey,typeOfSale,typeofpayment;
-    int noOfbags;
-    int count;
     int total;
     int advanceamt;
-    int quantity;
     int billdate;
     int deliveydate;
     int discount;
@@ -111,14 +108,6 @@ public class Order {
     boolean servicePaid;
 
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
 
     public String getTransport() {
         return transport;
@@ -201,21 +190,6 @@ public class Order {
         this.productList = productList;
     }
 
-    public int getNoOfbags() {
-        return noOfbags;
-    }
-
-    public void setNoOfbags(int noOfbags) {
-        this.noOfbags = noOfbags;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public int getTotal() {
         return total;

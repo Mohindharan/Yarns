@@ -106,6 +106,7 @@ public class Contact_List extends Fragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.contacts, container, false);
         getActivity().setTitle(category);
+        ((MainActivity)getActivity()).setlighttoolbarcolor();
         return view;
 
     }

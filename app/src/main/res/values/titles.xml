@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titles_array">
+        <item>List non-text files</item>
+        <item>List files shared with me</item>
+        <item>List text files</item>
+        <item>List files contains \"a\" in title</item>
+        <item>List starred text files</item>
+        <item>List text or html files</item>
+    </string-array>
+</resources>

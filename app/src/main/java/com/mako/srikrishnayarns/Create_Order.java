@@ -3,11 +3,13 @@ package com.mako.srikrishnayarns;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,11 +41,12 @@ import java.util.List;
 public class Create_Order extends Fragment implements View.OnClickListener,View.OnFocusChangeListener {
     TextView buyer_tv, seller_tv, transport_tv, addItem, Total_tv,in_date,es_date,grandtotal_tv,items;
     EditText discount_tv,adj_tv,ship_tv,advance_amt_tv,payment_type,type_of_sale;
+    FloatingActionButton fab;
     private RecyclerView mRecyclerView;
     CheckBox advance_cb;
     List<product> mdataset = new ArrayList<>();
     productItemAdapter adapter;
-    Order order = new Order();
+    Order order;
     private int year;
     private int month;
     private int day;
@@ -52,37 +55,34 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     static final int DATE_PICKER_ID = 1111;
     static View v;
     Button b;
-    boolean firstload=true;
+    boolean firstload=true,isset=false;
+    Order od;
+    public Create_Order(Order order, String key) {
+        this.od=order;
+        this.isset=true;
+        this.key=key;
+        this.order=order;
 
+    }
+    public Create_Order() {
+    order=new Order();
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.create_order, container, false);
-    }
-
-    public void showDatePickerDialog(View v) {
-        android.support.v4.app.DialogFragment newFragment = new android.support.v4.app.DialogFragment();
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.save){
-            setGrandtotal();
-            getData();
-
-           if(checkdata())
-                setdata();
-        }
-        return super.onOptionsItemSelected(item);
 
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         v = view;
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
+        ((MainActivity)getActivity()).setlighttoolbarcolor();
+        getActivity().setTitle("create confirmation");
         buyer_tv = (TextView) v.findViewById(R.id.select_buyer);
         items= (TextView) v.findViewById(R.id.items);
         addItem = (TextView) v.findViewById(R.id.addItem);
@@ -99,6 +99,7 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         type_of_sale=(EditText)v.findViewById(R.id.type_of_sale);
         payment_type=(EditText)v.findViewById(R.id.payment_type);
         advance_cb=(CheckBox)v.findViewById(R.id.checkBox);
+        fab=(FloatingActionButton)v.findViewById(R.id.saveadd);
         buyer_tv.setOnClickListener(this);
         seller_tv.setOnClickListener(this);
         addItem.setOnClickListener(this);
@@ -141,15 +142,54 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         discount_tv.setOnFocusChangeListener(this);
         adj_tv.setOnFocusChangeListener(this);
         ship_tv.setOnFocusChangeListener(this);
+        if (isset)
+        {
+            setprevdata();
+        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setGrandtotal();
+                getData();
+
+                if(checkdata())
+                    setdata();
+            }
+        });
 
     }
 
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.save,menu);
+    private void setprevdata() {
+        buyer_tv.setText(od.getBuyer());
+        seller_tv.setText(od.getSeller());
+        transport_tv.setText(od.getTransport());
+        type_of_sale.setText(od.getTypeOfSale());
+        in_date.setText(getdate(od.getBilldate()));
+        es_date.setText(getdate(od.getDeliveydate()));
+        Total_tv.setText(String.valueOf(od.getTotal()));
+        discount_tv.setText(String.valueOf(od.getDiscount()));
+        adj_tv.setText(String.valueOf(od.getAdjustments()));
+        ship_tv.setText(String.valueOf(od.getShippping()));
+        payment_type.setText(String.valueOf(od.getTypeofpayment()));
+        advance_amt_tv.setText(String.valueOf(od.getAdvanceamt()));
+        grandtotal_tv.setText(String.valueOf(od.getGrand_total()));
+        mdataset=od.getProductList();
+        adapter = new productItemAdapter(getActivity(), mdataset,Create_Order.this);
+        mRecyclerView.setAdapter(adapter);
     }
+
+    public String getdate(int d){
+        String temp="";
+        int day,month,year=2000;
+        day=d%100;
+        d=d/100;
+        month=d%100;
+        d=d/100;
+        year=year+d;
+        temp=""+day+"-"+month+"-"+year;
+        return temp;
+    }
+
 
     public void setTotal() {
         Total_tv.setText(String.valueOf(adapter.getTotal()));
@@ -178,28 +218,13 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     public void setdata(){
         DatabaseReference fd=FirebaseDatabase.getInstance().getReference().child("order");
         fd.keepSynced(true);
+        if (!isset)
         key = fd.push().getKey();
         fd.child(key).setValue(order);
-    }
-    public void loadData(String str){
-        DatabaseReference fd=FirebaseDatabase.getInstance().getReference().child("order").child(str);
-        fd.keepSynced(true);
-
-
-        fd.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(firstload) {
-                    bae = dataSnapshot.getValue(Order.class);
-                    firstload=false;
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
+        ft.replace(R.id.content_frame, new confirmation_list());
+        ft.commit();
     }
 
     public void getData(){
@@ -333,6 +358,7 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     }
     public void setGrandtotal(){
         int tot=0,dis=0,adj=0,shipping=0,ad=0;
+        if (Total_tv.getText().length()!=0)
          tot=Integer.parseInt(Total_tv.getText().toString());
         if(discount_tv.getText().length()!=0)
         dis=Integer.parseInt(discount_tv.getText().toString());
@@ -396,8 +422,6 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            // Create a new instance of DatePickerDialog and return it
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 

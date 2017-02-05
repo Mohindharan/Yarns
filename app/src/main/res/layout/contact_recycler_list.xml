@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@+id/fast_scroller"
-        android:layout_toStartOf="@+id/fast_scroller" />
+            android:layout_toStartOf="@+id/fast_scroller" />
 
     <com.viethoa.RecyclerViewFastScroller
         android:id="@+id/fast_scroller"
