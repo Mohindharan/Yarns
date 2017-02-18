@@ -1,8 +1,6 @@
 package com.mako.srikrishnayarns;
 
-import android.app.ActionBar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,17 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-/**
- * Created by Mako on 1/18/2017.
- */
+
 public class Dashboard extends Fragment implements View.OnClickListener {
     View view;
-    FloatingActionButton BuyerBtn,SellerBtn,Transportbtn;
-    LinearLayout createOrderBtn,manage_product,allconformation;
+    FloatingActionButton BuyerBtn,SellerBtn,Transportbtn,payment_btn;
+    LinearLayout createOrderBtn,manage_product,allconformation,forms;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dashboard, container, false);
-        setHasOptionsMenu(true);
 
         return view;
     }
@@ -33,23 +28,30 @@ public class Dashboard extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        getActivity().setTitle("Dashboard");
+        setHasOptionsMenu(true);
+
+        getActivity().setTitle(R.string.app_name);
         SellerBtn= (FloatingActionButton)view.findViewById(R.id.sellerbtn);
         Transportbtn= (FloatingActionButton)view.findViewById(R.id.transportbtn);
+        payment_btn= (FloatingActionButton)view.findViewById(R.id.payment_btn);
         BuyerBtn= (FloatingActionButton)view.findViewById(R.id.buyerbtn);
         createOrderBtn= (LinearLayout) view.findViewById(R.id.create_order_btn);
         manage_product= (LinearLayout) view.findViewById(R.id.manage_product);
         allconformation= (LinearLayout) view.findViewById(R.id.all_conformation);
+        forms= (LinearLayout) view.findViewById(R.id.forms);
+        forms.setOnClickListener(this);
         BuyerBtn.setOnClickListener(this);
         manage_product.setOnClickListener(this);
         SellerBtn.setOnClickListener(this);
+        payment_btn.setOnClickListener(this);
         Transportbtn.setOnClickListener(this);
         allconformation.setOnClickListener(this);
         createOrderBtn.setOnClickListener(this);
         ((MainActivity)getActivity()).setdarktoolbarcolor();
+        ((MainActivity)getActivity()).isdash=true;
     }
     public void setFragment(Fragment fragment){
-
+        ((MainActivity)getActivity()).isdash=false;
         if (fragment != null) {
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null) ;
             ft.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left);
@@ -59,7 +61,9 @@ public class Dashboard extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
         inflater.inflate(R.menu.main, menu);
+
         super.onCreateOptionsMenu(menu,inflater);
     }
     @Override
@@ -82,6 +86,12 @@ public class Dashboard extends Fragment implements View.OnClickListener {
                 break;
             case R.id.all_conformation:
                 setFragment(new confirmation_list());
+                break;
+            case R.id.forms:
+                setFragment(new Review_form());
+                break;
+            case R.id.payment_btn:
+                setFragment(new paymentFragment());
                 break;
         }
     }

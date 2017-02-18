@@ -1,5 +1,7 @@
 package com.mako.srikrishnayarns;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +40,7 @@ public class Display_order extends Fragment {
     boolean firstLoad=true;
     List<product> mdataset = new ArrayList<>();
     productitemreAdapter adapter;
-    TextView buyer_tv, seller_tv, transport_tv, addItem, Total_tv,in_date,es_date,grandtotal_tv,items,discount_tv,adj_tv,ship_tv,advance_amt_tv,payment_type,type_of_sale;
+    TextView buyer_tv, seller_tv, transport_tv, addItem, Total_tv,in_date,es_date,grandtotal_tv,items,discount_tv,adj_tv,ship_tv,advance_amt_tv,payment_type,type_of_sale,invoice;
     String key;
     private RecyclerView mRecyclerView;
     @Nullable
@@ -80,7 +83,7 @@ public class Display_order extends Fragment {
     private void initUi() {
         setHasOptionsMenu(true);
         ((MainActivity)getActivity()).setlighttoolbarcolor();
-        getActivity().setTitle("create confirmation");
+        getActivity().setTitle("confirmation");
         buyer_tv = (TextView) v.findViewById(R.id.select_buyer);
         items= (TextView) v.findViewById(R.id.items);
         addItem = (TextView) v.findViewById(R.id.addItem);
@@ -93,6 +96,7 @@ public class Display_order extends Fragment {
         discount_tv = (TextView) v.findViewById(R.id.discount);
         adj_tv = (TextView) v.findViewById(R.id.adjustments);
         ship_tv=(TextView) v.findViewById(R.id.shipping);
+        invoice=(TextView) v.findViewById(R.id.invoice);
         advance_amt_tv=(TextView) v.findViewById(R.id.advance_amt);
         type_of_sale=(TextView)v.findViewById(R.id.type_of_sale);
         payment_type=(TextView)v.findViewById(R.id.payment_type);
@@ -103,6 +107,7 @@ public class Display_order extends Fragment {
         setdata();
     }
     public void setdata(){
+        invoice.setText(String.valueOf(order.getInvoice()));
         buyer_tv.setText(order.getBuyer());
         seller_tv.setText(order.getSeller());
         transport_tv.setText(order.getTransport());
@@ -136,13 +141,13 @@ public class Display_order extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.edit_contact:
-                FragmentTransaction ft =  getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null);
-                ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
-                ft.replace(R.id.content_frame, new Create_Order(order,key));
-                ft.commit();
+                setFragment(new Create_Order(order,key));
                 break;
             case R.id.delete_contact:
                 delete();
+                break;
+            case R.id.send_invoice:
+                setFragment(new InvoiceFragment(order));
                 break;
 
         }
@@ -150,11 +155,21 @@ public class Display_order extends Fragment {
         return super.onOptionsItemSelected(item);
 
     }
+    public void setFragment(Fragment fragment){
 
+        if (fragment != null) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null) ;
+            ft.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left);
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        }
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.display_contact,menu);
+        inflater.inflate(R.menu.display_order,menu);
 
     }
+
+
 }

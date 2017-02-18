@@ -12,11 +12,53 @@ public class Order {
     int total;
     int advanceamt;
     int billdate;
+    int invoice;
     int deliveydate;
     int discount;
     int adjustments;
     int shippping;
+    int grand_total;
+    int remaining;
+    int remaining_service;
+    List<product> productList=new ArrayList<>();
+    boolean isAdvance;
+    boolean paid;
+    boolean e1Form;
+    boolean cform;
+    boolean dispatched;
+    boolean isserviceset;
+    boolean servicePaid;
 
+    public int getRemaining_service() {
+        return remaining_service;
+    }
+
+    public void setRemaining_service(int remaining_service) {
+        this.remaining_service = remaining_service;
+    }
+
+    public boolean isserviceset() {
+        return isserviceset;
+    }
+
+    public void setIsserviceset(boolean isserviceset) {
+        this.isserviceset = isserviceset;
+    }
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
+    }
+    public int getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(int invoice) {
+        this.invoice = invoice;
+    }
     public int getGrand_total() {
         return grand_total;
     }
@@ -24,15 +66,6 @@ public class Order {
     public void setGrand_total(int grand_total) {
         this.grand_total = grand_total;
     }
-
-    int grand_total;
-    List<product> productList=new ArrayList<>();
-    boolean isAdvance;
-    boolean paid;
-    boolean e1Form;
-    boolean cform;
-    boolean dispatched;
-
     public String getTypeofpayment() {
         return typeofpayment;
     }
@@ -105,7 +138,7 @@ public class Order {
         this.paid = paid;
     }
 
-    boolean servicePaid;
+
 
 
 

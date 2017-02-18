@@ -1,8 +1,10 @@
 package com.mako.srikrishnayarns;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,34 +12,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 /**
  * Created by Mako on 2/1/2017.
  */
 
-public class confirmationAdapter extends RecyclerView.Adapter <confirmationAdapter.ViewHolder> {
+public class paymentAdapter extends RecyclerView.Adapter <paymentAdapter.ViewHolder> {
     private List<Order> dataset;
     private List<String> OrderKey;
-
+    paymentFragment act;
 
     Context context;
 
-    public confirmationAdapter(List<Order> dataset, List<String> mDatakey, FragmentActivity activity) {
+    public paymentAdapter(List<Order> dataset, List<String> mDatakey, FragmentActivity activity, paymentFragment paymentFragment) {
         this.dataset =dataset;
         this.context=activity;
         this.OrderKey =mDatakey;
+        act=paymentFragment;
 
     }
 
     @Override
-    public confirmationAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.confirmation_list_item, parent, false);
-        return new confirmationAdapter.ViewHolder(view);
+    public paymentAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.payment_list_item, parent, false);
+        return new paymentAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(confirmationAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(paymentAdapter.ViewHolder holder, int position) {
         holder.tx.setText(dataset.get(position).getBuyer().toString());
         holder.seller.setText(dataset.get(position).getSeller());
         holder.date.setText(getDate(dataset.get(position).getBilldate()));
@@ -75,10 +81,26 @@ public class confirmationAdapter extends RecyclerView.Adapter <confirmationAdapt
 
         @Override
         public void onClick(View v) {
-            FragmentTransaction ft =  ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction().addToBackStack(null);
-            ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
-            ft.replace(R.id.content_frame, new Display_order(dataset.get(getLayoutPosition()),OrderKey.get(getLayoutPosition())));
-            ft.commit();
+
+            new AlertDialog.Builder(context)
+                    .setTitle("Payment")
+                    .setMessage("has amount "+dataset.get(getLayoutPosition()).getRemaining()+" has been paid?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            DatabaseReference dv= FirebaseDatabase.getInstance().getReference().child("order").child(OrderKey.get(getLayoutPosition())).child("remaining");
+                            dv.setValue(0);
+                           act.loaddata();
+
+                        }
+
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 }

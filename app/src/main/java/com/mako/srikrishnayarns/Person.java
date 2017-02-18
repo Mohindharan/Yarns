@@ -15,6 +15,15 @@ public class Person {
     public String email;
     public String name;
     public String company;
+    int amt;
+
+    public int getAmt() {
+        return amt;
+    }
+
+    public void setAmt(int amt) {
+        this.amt = amt;
+    }
 
     public String getCompany() {
         return company;

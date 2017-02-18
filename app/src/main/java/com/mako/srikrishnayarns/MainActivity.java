@@ -2,6 +2,7 @@ package com.mako.srikrishnayarns;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -25,6 +26,7 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static boolean isdash=true;
     CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +70,28 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        else if(getTitle()=="Dashboard"){
+//        else if (!isdash){
+//            getSupportFragmentManager().popBackStack();
+//            isdash=true;
+//        }
+        else {
 
-            new AlertDialog.Builder(this)
+//
+//        }
+//
+            int count = getSupportFragmentManager().getBackStackEntryCount();
+            if (count == 0  ) {
+
+                new AlertDialog.Builder(this)
                     .setTitle("Exit")
                     .setMessage("Are you sure you want Exit?")
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
                             finish();
-                            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+
+
+
                         }
                     })
                     .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -85,15 +99,20 @@ public class MainActivity extends AppCompatActivity
 
                         }
                     })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(android.R.drawable.ic_delete)
                     .show();
 
+            } else {
+                getSupportFragmentManager().popBackStack();
+            }
         }
-        else {
-           
-            setFragment(new Dashboard());
-        }
-
+    }
+    public void startuploadActivity(Intent i){
+        startActivityForResult(i, 100);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public void setFragment(Fragment fragment){
@@ -129,8 +148,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_history) {
 
         } else if (id == R.id.nav_settings) {
+            isdash=false;
+            startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+            overridePendingTransition(R.anim.pull_in_right,R.anim.push_out_left);
 
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+            drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 }

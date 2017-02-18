@@ -76,13 +76,14 @@
         android:background="@drawable/top_border"
         android:padding="@dimen/activity_horizontal_margin"
         android:clickable="true"
+        android:id="@+id/forms"
         android:orientation="horizontal"
         android:weightSum="1">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:text="Review Forms"
+            android:text="Upload Forms"
             android:gravity="center_vertical"
             android:textSize="18sp"
             android:paddingLeft="20dp"
@@ -327,6 +328,7 @@
                     android:layout_width="@dimen/fabbtn_size"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:id="@+id/payment_btn"
                     android:elevation="10dp"
                     app:rippleColor="@color/colorPrimary"
                     style="@style/Widget.AppCompat.Button.Colored"

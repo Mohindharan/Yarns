@@ -3,6 +3,8 @@ package com.mako.srikrishnayarns;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
@@ -39,7 +41,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Create_Order extends Fragment implements View.OnClickListener,View.OnFocusChangeListener {
-    TextView buyer_tv, seller_tv, transport_tv, addItem, Total_tv,in_date,es_date,grandtotal_tv,items;
+    TextView buyer_tv, seller_tv, transport_tv, addItem, Total_tv,in_date,es_date,grandtotal_tv,items,invoice_no;
     EditText discount_tv,adj_tv,ship_tv,advance_amt_tv,payment_type,type_of_sale;
     FloatingActionButton fab;
     private RecyclerView mRecyclerView;
@@ -50,6 +52,8 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     private int year;
     private int month;
     private int day;
+    String title;
+    int selleramt,buyeramt;
     String key;
     Order bae ;
     static final int DATE_PICKER_ID = 1111;
@@ -62,10 +66,12 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         this.isset=true;
         this.key=key;
         this.order=order;
+        title="edit confirmation";
 
     }
     public Create_Order() {
     order=new Order();
+        title="create confirmation";
     }
     @Nullable
     @Override
@@ -82,11 +88,12 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
         ((MainActivity)getActivity()).setlighttoolbarcolor();
-        getActivity().setTitle("create confirmation");
+        getActivity().setTitle(title);
         buyer_tv = (TextView) v.findViewById(R.id.select_buyer);
         items= (TextView) v.findViewById(R.id.items);
         addItem = (TextView) v.findViewById(R.id.addItem);
         in_date = (TextView) v.findViewById(R.id.invoice_date);
+        invoice_no = (TextView) v.findViewById(R.id.invoice);
         es_date = (TextView) v.findViewById(R.id.estimated_date);
         seller_tv = (TextView) v.findViewById(R.id.select_seller);
         transport_tv = (TextView) v.findViewById(R.id.select_trasport);
@@ -115,7 +122,20 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
+        if(!isset)
+            invoice_no.setText("loading");
+        DatabaseReference db= FirebaseDatabase.getInstance().getReference().child("invoice");
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                invoice_no.setText(dataSnapshot.getValue().toString());
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         // Show current date
         advance_cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -160,6 +180,7 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     }
 
     private void setprevdata() {
+        invoice_no.setText(String.valueOf(od.getInvoice()));
         buyer_tv.setText(od.getBuyer());
         seller_tv.setText(od.getSeller());
         transport_tv.setText(od.getTransport());
@@ -217,10 +238,16 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     }
     public void setdata(){
         DatabaseReference fd=FirebaseDatabase.getInstance().getReference().child("order");
+        DatabaseReference db=FirebaseDatabase.getInstance().getReference().child("invoice");
         fd.keepSynced(true);
         if (!isset)
         key = fd.push().getKey();
         fd.child(key).setValue(order);
+        int num=Integer.parseInt(invoice_no.getText().toString());
+        num=num+1;
+        if(!isset)
+            db.setValue(String.valueOf(num));
+//        getActivity().getSupportFragmentManager().popBackStack();
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.pull_in_left,R.anim.push_out_right);
         ft.replace(R.id.content_frame, new confirmation_list());
@@ -229,10 +256,12 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
 
     public void getData(){
         String temp;
+
         order.setProductList(adapter.getProductList());
         order.setBilldate(getdate(in_date.getText().toString()));
         order.setDeliveydate(getdate(es_date.getText().toString()));
         order.setTotal(adapter.getTotal());
+        order.setInvoice(Integer.parseInt(invoice_no.getText().toString()));
         temp=discount_tv.getText().toString();
         if(!temp.isEmpty())
             order.setDiscount(Integer.parseInt(temp));
@@ -252,6 +281,7 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         temp=grandtotal_tv.getText().toString();
         if (!temp.isEmpty())
             order.setGrand_total(Integer.parseInt(temp));
+        order.setRemaining(order.getGrand_total());
         order.setTypeofpayment(payment_type.getText().toString());
         order.setTypeOfSale(type_of_sale.getText().toString());
     }
@@ -259,7 +289,6 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
     private int getdate(String str) {
         int day,year,month,date;
         str=str.replace(" ","");
-        year=Integer.parseInt(str.substring(str.length()-2));
         year=Integer.parseInt(str.substring(str.length()-2));
         str=str.substring(0,str.length()-5);
         String temp;
@@ -370,7 +399,6 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
             if(advance_amt_tv.getText().length()!=0)
             ad=Integer.parseInt(advance_amt_tv.getText().toString());
         String ans= String.valueOf(tot+adj+shipping-dis-ad);
-
         grandtotal_tv.setText(ans);
     }
     @Override
@@ -388,8 +416,7 @@ public class Create_Order extends Fragment implements View.OnClickListener,View.
         }
     }
 
-    public static class fromDatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
+    public static class fromDatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);

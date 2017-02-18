@@ -30,6 +30,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Invoice No"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="17sp"
+                        android:textColor="@color/blue_dark_grey"
+                        android:background="?attr/editTextBackground"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/invoice"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="Buyer"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"

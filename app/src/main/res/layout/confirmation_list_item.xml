@@ -63,7 +63,7 @@
             android:textSize="15sp"
             android:text="No 7846"
             android:gravity="center"
-
+            android:id="@+id/invoice"
             android:fontFamily="sans-serif"
             android:layout_height="wrap_content" />
         <LinearLayout

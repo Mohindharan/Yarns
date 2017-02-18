@@ -64,7 +64,7 @@ public class confirmation_list extends Fragment implements View.OnClickListener 
     public static boolean toggle=true;
     boolean save=false;
     int pos;
-    String attr[]={"Bill date","Delivery date","Total Amount","Buyer","Seller","Type Of Sale","Type of Payment"};
+
     String attrValue[]={"billdate","deliveydate","grand_total","buyer","seller","typeOfSale","typeofpayment"};
     MyUtils anime = new MyUtils();
     private ProgressBar spinner;
@@ -89,13 +89,20 @@ public class confirmation_list extends Fragment implements View.OnClickListener 
         dataset =new ArrayList<Order>();
         mDatakey=new ArrayList<String>();
         loadData();
+
         filterLayout=(LinearLayout)v.findViewById(R.id.filter_layout);
+        String attr[]={"Bill date","Delivery date","Total Amount","Buyer","Seller","Type Of Sale","Type of Payment"};
+        fliterAttr=(Spinner) v.findViewById(R.id.fliterType);
+        ArrayAdapter<String> adapterType= new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_spinner_item, attr);
+        adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fliterAttr.setAdapter(adapterType);
         anime.SlideUP(filterLayout,getActivity());
-        progress = new ProgressDialog(getActivity());
-        progress.setTitle("Loading");
-        progress.setMessage("Syncing ");
-        progress.setCancelable(false);
-        progress.show();
+            progress = new ProgressDialog(getActivity());
+            progress.setTitle("Loading");
+            progress.setMessage("Syncing ");
+            progress.setCancelable(false);
+            progress.show();
         getActivity().setTitle("Manage Conformation");
         ((MainActivity)getActivity()).setlighttoolbarcolor();
         mRecyclerView =(RecyclerView)v.findViewById(R.id.my_recycler_view);
@@ -180,11 +187,7 @@ public class confirmation_list extends Fragment implements View.OnClickListener 
     }
 
     protected void initialiseUI(){
-        fliterAttr=(Spinner) v.findViewById(R.id.fliterType);
-        ArrayAdapter<String> adapterType= new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, attr);
-        adapterType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fliterAttr.setAdapter(adapterType);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         fromFliter=(TextView)v.findViewById(R.id.from_filter);
         toFliter=(TextView)v.findViewById(R.id.to_fliter);
@@ -234,6 +237,7 @@ public class confirmation_list extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.productadd:
+
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction() ;
                 ft.setCustomAnimations(R.anim.pull_in_right,R.anim.push_out_left);
                 ft.replace(R.id.content_frame,new Create_Order());

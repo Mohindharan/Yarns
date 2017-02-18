@@ -45,10 +45,8 @@ dependencies {
     //firebase
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.google.firebase:firebase-core:10.0.1'
-    compile 'com.google.firebase:firebase-auth:10.0.1'
 
-    compile 'com.google.android.gms:play-services-drive:10.0.1'
-
+    compile 'com.itextpdf:itextg:5.5.10'
 
     testCompile 'junit:junit:4.12'
 }

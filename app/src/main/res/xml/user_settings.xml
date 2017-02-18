@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Invoice">
+
+        <EditTextPreference
+            android:title="Next Invoice No"
+            android:numeric="integer"
+            android:maxLength="10"
+            android:defaultValue="0000"
+            android:key="invoice" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="App Settings">
+        <CheckBoxPreference
+            android:title="Use a Password"
+            android:summary="You can secure the app with password( To modify your current password,disable then enable the option)"
+            android:key="isprotected"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="About">
+            <Preference
+                android:title="App Version"
+                android:summary="1.0.0"
+             />
+    </PreferenceCategory>
+
+</PreferenceScreen>
